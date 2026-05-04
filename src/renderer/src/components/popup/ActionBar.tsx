@@ -36,7 +36,7 @@ export default function ActionBar(): React.JSX.Element {
         <button
           onClick={() => translate()}
           disabled={isLoading}
-          className="bg-primary text-neutral text-sm font-semibold px-3 py-1.5 rounded-md hover:opacity-90 disabled:opacity-50 transition-opacity"
+          className="bg-primary text-neutral text-sm font-semibold px-3 py-1.5 rounded-md hover:opacity-90 disabled:opacity-50 transition-opacity cursor-pointer"
         >
           {isLoading ? '...' : 'Translate'}
         </button>
