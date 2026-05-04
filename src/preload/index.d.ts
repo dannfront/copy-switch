@@ -43,6 +43,7 @@ interface Api {
   popup: {
     hide: () => void
     togglePin: () => void
+    startResize: (direction: string) => void
   }
 }
 

@@ -37,7 +37,8 @@ const api = {
   },
   popup: {
     hide: () => ipcRenderer.send('popup:hide'),
-    togglePin: () => ipcRenderer.send('popup:toggle-pin')
+    togglePin: () => ipcRenderer.send('popup:toggle-pin'),
+    startResize: (direction: string) => ipcRenderer.send('popup:start-resize', direction)
   }
 }
 

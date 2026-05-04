@@ -12,12 +12,16 @@ export function createPopupWindow(): BrowserWindow {
 
   popupWindow = new BrowserWindow({
     width: 480,
-    height: 183,
+    height: 400,
+    minWidth: 480,
+    maxWidth: 600,
+    minHeight: 400,
+    maxHeight: 400,
     frame: false,
     alwaysOnTop: true,
     skipTaskbar: true,
     show: false,
-    resizable: false,
+    resizable: true,
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false

@@ -4,7 +4,7 @@ import store from '../store'
 import { translateText } from '../deepl/client'
 import { openHistoryWindow } from '../windows/history'
 import { openSettingsWindow } from '../windows/settings'
-import { hidePopup, togglePin } from '../windows/popup'
+import { getPopupWindow, hidePopup, togglePin } from '../windows/popup'
 
 ipcMain.handle(
   'translate:text',
@@ -78,4 +78,15 @@ ipcMain.on('popup:hide', () => {
 
 ipcMain.on('popup:toggle-pin', () => {
   togglePin()
+})
+
+ipcMain.on('popup:start-resize', (_, direction: string) => {
+  const win = getPopupWindow()
+  if (
+    win &&
+    typeof (win as unknown as { startResizing?: (direction: string) => void }).startResizing ===
+      'function'
+  ) {
+    ;(win as unknown as { startResizing: (direction: string) => void }).startResizing(direction)
+  }
 })
