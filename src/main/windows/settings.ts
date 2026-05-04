@@ -12,7 +12,7 @@ export function openSettingsWindow(): BrowserWindow {
 
   settingsWindow = new BrowserWindow({
     width: 500,
-    height: 400,
+    height: 480,
     show: false,
     autoHideMenuBar: true,
     webPreferences: {
