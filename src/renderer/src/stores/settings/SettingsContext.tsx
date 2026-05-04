@@ -12,6 +12,7 @@ export function SettingsProvider({ children }: { children: ReactNode }): React.J
   })
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
+  const [saved, setSaved] = useState(false)
 
   useEffect(() => {
     window.api.settings.get().then((s) => {
@@ -21,6 +22,7 @@ export function SettingsProvider({ children }: { children: ReactNode }): React.J
   }, [])
 
   const update = useCallback((partial: Partial<Settings>) => {
+    setSaved(false)
     setSettings((prev) => ({ ...prev, ...partial }))
   }, [])
 
@@ -28,6 +30,8 @@ export function SettingsProvider({ children }: { children: ReactNode }): React.J
     setSaving(true)
     try {
       await window.api.settings.set(settings)
+      setSaved(true)
+      setTimeout(() => setSaved(false), 2000)
     } catch (err) {
       console.error('Failed to save settings', err)
     } finally {
@@ -36,7 +40,7 @@ export function SettingsProvider({ children }: { children: ReactNode }): React.J
   }, [settings])
 
   return (
-    <SettingsContext.Provider value={{ settings, loading, saving, update, save }}>
+    <SettingsContext.Provider value={{ settings, loading, saving, saved, update, save }}>
       {children}
     </SettingsContext.Provider>
   )

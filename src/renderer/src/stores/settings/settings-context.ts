@@ -12,6 +12,7 @@ export interface SettingsContextValue {
   settings: Settings
   loading: boolean
   saving: boolean
+  saved: boolean
   update: (partial: Partial<Settings>) => void
   save: () => Promise<void>
 }
