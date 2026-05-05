@@ -9,8 +9,7 @@ let tray: Tray | null = null
 export function createTray(): Tray {
   if (tray) return tray
 
-  const image = nativeImage.createFromPath(icon)
-  tray = new Tray(image.resize({ width: 16, height: 16 }))
+  tray = new Tray(icon)
 
   const contextMenu = Menu.buildFromTemplate([
     {

@@ -1,6 +1,7 @@
 import { BrowserWindow } from 'electron'
 import { join } from 'path'
 import { is } from '@electron-toolkit/utils'
+import icon from '../../../resources/icon.png?asset'
 
 let historyWindow: BrowserWindow | null = null
 
@@ -15,6 +16,7 @@ export function openHistoryWindow(): BrowserWindow {
     height: 600,
     show: false,
     autoHideMenuBar: true,
+    icon,
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false

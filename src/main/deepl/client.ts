@@ -55,7 +55,6 @@ export async function translateText(
     }
 
     const data = await res.json()
-    console.log(data)
 
     const first = data.translations?.[0]
     if (!first) {

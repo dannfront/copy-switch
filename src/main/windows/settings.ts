@@ -1,6 +1,7 @@
 import { BrowserWindow } from 'electron'
 import { join } from 'path'
 import { is } from '@electron-toolkit/utils'
+import icon from '../../../resources/icon.png?asset'
 
 let settingsWindow: BrowserWindow | null = null
 
@@ -15,6 +16,7 @@ export function openSettingsWindow(): BrowserWindow {
     height: 480,
     show: false,
     autoHideMenuBar: true,
+    icon,
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false

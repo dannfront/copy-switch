@@ -3,8 +3,8 @@ import { usePopup } from '../../hooks/usePopup'
 import { useTranslation } from '../../hooks/useTranslation'
 
 export default function ActionBar(): React.JSX.Element {
-  const { translatedText, error, historyId } = usePopup()
   const { translate, isLoading } = useTranslation()
+  const { sourceText, translatedText, error, historyId } = usePopup()
   const [favorited, setFavorited] = useState(false)
   const [copied, setCopied] = useState(false)
 
@@ -35,7 +35,7 @@ export default function ActionBar(): React.JSX.Element {
       <div className="flex items-center gap-2">
         <button
           onClick={() => translate()}
-          disabled={isLoading}
+          disabled={isLoading || !sourceText.trim()}
           className="bg-primary text-neutral text-sm font-semibold px-3 py-1.5 rounded-md hover:opacity-90 disabled:opacity-50 transition-opacity cursor-pointer"
         >
           {isLoading ? '...' : 'Translate'}
