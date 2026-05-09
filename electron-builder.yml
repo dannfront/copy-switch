@@ -14,7 +14,6 @@ asarUnpack:
 win:
   executableName: copy-switch
   icon: build/icon.ico
-  signAndEditExecutable: false
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}

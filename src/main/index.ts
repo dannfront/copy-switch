@@ -1,7 +1,7 @@
 import { app, shell, BrowserWindow, globalShortcut, clipboard } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
-import icon from '../../resources/icon.png?asset'
+import icon from '../../resources/icon.ico?asset'
 import { createTray } from './tray'
 import { showPopupAtCursor, createPopupWindow } from './windows/popup'
 import './ipc/handlers'
