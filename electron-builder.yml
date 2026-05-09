@@ -13,7 +13,7 @@ asarUnpack:
   - resources/**
 win:
   executableName: copy-switch
-  icon: build/icon.png
+  icon: build/icon.ico
   signAndEditExecutable: false
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
