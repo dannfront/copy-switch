@@ -12,10 +12,8 @@ const mockLoadFile = vi.fn()
 const mockOn = vi.fn()
 const mockIsDestroyed = vi.fn()
 
-let browserWindowInstance: ReturnType<typeof createMockBrowserWindow>
-
 function createMockBrowserWindow() {
-  const instance = {
+  return {
     webContents: { send: mockSend },
     show: mockShow,
     hide: mockHide,
@@ -27,8 +25,6 @@ function createMockBrowserWindow() {
     on: mockOn,
     isDestroyed: mockIsDestroyed
   }
-  browserWindowInstance = instance
-  return instance
 }
 
 const MockBrowserWindow = vi.fn().mockImplementation(createMockBrowserWindow)

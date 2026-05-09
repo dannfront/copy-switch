@@ -1,4 +1,4 @@
-import { Tray, Menu, app, nativeImage } from 'electron'
+import { Tray, Menu, app } from 'electron'
 import { openHistoryWindow } from '../windows/history'
 import { openSettingsWindow } from '../windows/settings'
 import { showPopupAtCursor } from '../windows/popup'

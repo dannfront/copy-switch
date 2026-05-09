@@ -1,4 +1,4 @@
-appId: com.electron.app
+appId: com.copy-switch.app
 productName: copy-switch
 directories:
   buildResources: build
@@ -41,5 +41,5 @@ appImage:
   artifactName: ${name}-${version}.${ext}
 npmRebuild: false
 publish:
-  provider: generic
-  url: https://example.com/auto-updates
+  provider: github
+  releaseType: release
