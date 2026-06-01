@@ -6,6 +6,7 @@ export interface Settings {
   defaultSourceLang: string
   defaultTargetLang: string
   theme: 'dark' | 'light'
+  startAtLogin: boolean
 }
 
 export interface SettingsContextValue {

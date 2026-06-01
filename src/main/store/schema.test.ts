@@ -11,7 +11,8 @@ describe('storeDefaults', () => {
         shortcut: 'Ctrl+Shift+T',
         defaultSourceLang: 'EN',
         defaultTargetLang: 'ES',
-        theme: 'dark'
+        theme: 'dark',
+        startAtLogin: false
       }
     })
   })
@@ -27,7 +28,8 @@ describe('storeDefaults', () => {
       shortcut: 'Ctrl+Shift+T',
       defaultSourceLang: 'EN',
       defaultTargetLang: 'ES',
-      theme: 'dark'
+      theme: 'dark',
+      startAtLogin: false
     })
   })
 
@@ -73,7 +75,8 @@ describe('Settings type', () => {
       shortcut: 'Ctrl+Shift+T',
       defaultSourceLang: 'EN',
       defaultTargetLang: 'ES',
-      theme: 'light'
+      theme: 'light',
+      startAtLogin: false
     }
     expect(settings.apiKey).toBe('my-api-key')
     expect(settings.theme).toBe('light')
@@ -85,7 +88,8 @@ describe('Settings type', () => {
       shortcut: 'Cmd+T',
       defaultSourceLang: 'ES',
       defaultTargetLang: 'EN',
-      theme: 'dark'
+      theme: 'dark',
+      startAtLogin: true
     }
     expect(settings.theme).toBe('dark')
   })
@@ -110,7 +114,8 @@ describe('StoreSchema type', () => {
         shortcut: 'Ctrl+Shift+T',
         defaultSourceLang: 'EN',
         defaultTargetLang: 'ES',
-        theme: 'dark'
+        theme: 'dark',
+        startAtLogin: false
       }
     }
     expect(schema.history).toHaveLength(1)

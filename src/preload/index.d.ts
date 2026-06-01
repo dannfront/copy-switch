@@ -16,6 +16,7 @@ interface Settings {
   defaultSourceLang: string
   defaultTargetLang: string
   theme: 'dark' | 'light'
+  startAtLogin: boolean
 }
 
 interface Api {

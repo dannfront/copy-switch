@@ -5,6 +5,10 @@ vi.mock('electron', () => ({
   ipcMain: {
     handle: vi.fn(),
     on: vi.fn()
+  },
+  app: {
+    setLoginItemSettings: vi.fn(),
+    getLoginItemSettings: vi.fn()
   }
 }))
 
@@ -41,7 +45,7 @@ vi.mock('../windows/popup', () => ({
   togglePin: vi.fn()
 }))
 
-import { ipcMain } from 'electron'
+import { ipcMain, app } from 'electron'
 import { v4 as uuidv4 } from 'uuid'
 import store from '../store'
 import { translateText } from '../deepl/client'
@@ -282,7 +286,7 @@ describe('ipc handlers', () => {
 
   describe('settings:get', () => {
     it('returns settings object', () => {
-      const settings = { apiKey: 'key', shortcut: 'Ctrl+T', defaultSourceLang: 'EN', defaultTargetLang: 'ES', theme: 'dark' as const }
+      const settings = { apiKey: 'key', shortcut: 'Ctrl+T', defaultSourceLang: 'EN', defaultTargetLang: 'ES', theme: 'dark' as const, startAtLogin: false }
       store.get.mockReturnValue(settings)
 
       const handler = getHandler('settings:get')
@@ -295,12 +299,31 @@ describe('ipc handlers', () => {
 
   describe('settings:set', () => {
     it('updates settings', () => {
-      const newSettings = { apiKey: 'new-key', shortcut: 'Ctrl+T', defaultSourceLang: 'ES', defaultTargetLang: 'EN', theme: 'light' as const }
+      const newSettings = { apiKey: 'new-key', shortcut: 'Ctrl+T', defaultSourceLang: 'ES', defaultTargetLang: 'EN', theme: 'light' as const, startAtLogin: false }
 
       const handler = getHandler('settings:set')
       handler!({}, newSettings)
 
       expect(store.set).toHaveBeenCalledWith('settings', newSettings)
+    })
+
+    it('syncs startAtLogin to login item settings when property exists', () => {
+      store.get.mockReturnValue({ startAtLogin: true })
+
+      const handler = getHandler('settings:set')
+      handler!(
+        {},
+        {
+          apiKey: 'key',
+          shortcut: 'Ctrl+T',
+          defaultSourceLang: 'EN',
+          defaultTargetLang: 'ES',
+          theme: 'dark' as const,
+          startAtLogin: true
+        }
+      )
+
+      expect(app.setLoginItemSettings).toHaveBeenCalledWith({ openAtLogin: true })
     })
   })
 

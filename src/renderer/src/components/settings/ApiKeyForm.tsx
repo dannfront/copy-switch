@@ -1,4 +1,10 @@
 import { useSettings } from '../../hooks/useSettings'
+import {
+  autoDetectLanguageOption,
+  languageOptions,
+  settingsCheckboxOptions,
+} from '../../utils/settings-options'
+import SettingsCheckbox from './SettingsCheckbox'
 
 export default function ApiKeyForm(): React.JSX.Element {
   const { settings, update, save, saving, saved } = useSettings()
@@ -27,18 +33,11 @@ export default function ApiKeyForm(): React.JSX.Element {
             onChange={(e) => update({ defaultSourceLang: e.target.value })}
             className="mt-1 w-full bg-surface text-text-primary text-sm rounded-md px-3 py-2 outline-none focus:ring-1 focus:ring-primary border border-border"
           >
-            <option value="auto">Auto-detect</option>
-            <option value="EN">English</option>
-            <option value="ES">Spanish</option>
-            <option value="FR">French</option>
-            <option value="DE">German</option>
-            <option value="IT">Italian</option>
-            <option value="PT">Portuguese</option>
-            <option value="RU">Russian</option>
-            <option value="JA">Japanese</option>
-            <option value="ZH">Chinese</option>
-            <option value="NL">Dutch</option>
-            <option value="PL">Polish</option>
+            {[autoDetectLanguageOption, ...languageOptions].map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
           </select>
         </label>
 
@@ -49,19 +48,22 @@ export default function ApiKeyForm(): React.JSX.Element {
             onChange={(e) => update({ defaultTargetLang: e.target.value })}
             className="mt-1 w-full bg-surface text-text-primary text-sm rounded-md px-3 py-2 outline-none focus:ring-1 focus:ring-primary border border-border"
           >
-            <option value="EN">English</option>
-            <option value="ES">Spanish</option>
-            <option value="FR">French</option>
-            <option value="DE">German</option>
-            <option value="IT">Italian</option>
-            <option value="PT">Portuguese</option>
-            <option value="RU">Russian</option>
-            <option value="JA">Japanese</option>
-            <option value="ZH">Chinese</option>
-            <option value="NL">Dutch</option>
-            <option value="PL">Polish</option>
+            {languageOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
           </select>
         </label>
+
+        {settingsCheckboxOptions.map((option) => (
+          <SettingsCheckbox
+            key={option.key}
+            option={option}
+            checked={settings[option.key] as boolean}
+            onChange={(checked) => update({ [option.key]: checked })}
+          />
+        ))}
 
         <button
           onClick={save}

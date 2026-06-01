@@ -1,4 +1,4 @@
-import { ipcMain } from 'electron'
+import { ipcMain, app } from 'electron'
 import { v4 as uuidv4 } from 'uuid'
 import store from '../store'
 import { translateText } from '../deepl/client'
@@ -62,6 +62,10 @@ ipcMain.handle('settings:get', () => {
 
 ipcMain.handle('settings:set', (_, settings) => {
   store.set('settings', settings)
+  const current = store.get('settings')
+  if ('startAtLogin' in current) {
+    app.setLoginItemSettings({ openAtLogin: current.startAtLogin })
+  }
 })
 
 ipcMain.handle('window:open-history', () => {

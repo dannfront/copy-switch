@@ -14,6 +14,7 @@ export interface Settings {
   defaultSourceLang: string
   defaultTargetLang: string
   theme: 'dark' | 'light'
+  startAtLogin: boolean
 }
 
 export interface StoreSchema {
@@ -28,6 +29,7 @@ export const storeDefaults: StoreSchema = {
     shortcut: 'Ctrl+Shift+T',
     defaultSourceLang: 'EN',
     defaultTargetLang: 'ES',
-    theme: 'dark'
+    theme: 'dark',
+    startAtLogin: false
   }
 }

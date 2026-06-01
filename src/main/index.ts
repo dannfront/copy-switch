@@ -4,6 +4,7 @@ import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.ico?asset'
 import { createTray } from './tray'
 import { showPopupAtCursor, createPopupWindow } from './windows/popup'
+import store from './store'
 import './ipc/handlers'
 
 function createWindow(): void {
@@ -38,12 +39,20 @@ function createWindow(): void {
   }
 }
 
+function syncLoginItemSettings(): void {
+  const settings = store.get('settings')
+  if ('startAtLogin' in settings) {
+    app.setLoginItemSettings({ openAtLogin: settings.startAtLogin })
+  }
+}
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.copy-switch.app')
+  syncLoginItemSettings()
 
   // Default open or close DevTools by F12 in development
   // and ignore CommandOrControl + R in production.

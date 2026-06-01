@@ -29,6 +29,7 @@ const api = {
       defaultSourceLang: string
       defaultTargetLang: string
       theme: 'dark' | 'light'
+      startAtLogin: boolean
     }) => ipcRenderer.invoke('settings:set', settings)
   },
   window: {
