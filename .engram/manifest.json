@@ -16,6 +16,14 @@
       "sessions": 8,
       "memories": 14,
       "prompts": 41
+    },
+    {
+      "id": "a0ea78fd",
+      "created_by": "SantiagoDanielRojasH",
+      "created_at": "2026-06-01T17:42:37Z",
+      "sessions": 5,
+      "memories": 20,
+      "prompts": 55
     }
   ]
 }
